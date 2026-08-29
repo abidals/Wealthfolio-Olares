@@ -29,11 +29,12 @@ Upstream app: [`wealthfolio/wealthfolio`](https://github.com/wealthfolio/wealthf
    # example output: $argon2id$v=19$m=65536,t=3,p=4$<salt>$<hash>
    ```
 
-2. **Clone this repo and upload the chart** to your Olares Local Sources:
+2. **Get the chart package** — download `wealthfolio-<version>.tgz` from this repo's [Releases](https://github.com/abidals/Wealthfolio-Olares/releases/latest) (or clone and build it yourself), then upload it to your Olares Local Sources:
    ```sh
-   git clone <this-repo-url> wealthfolio-app && cd wealthfolio-app
    olares-cli market upload ./wealthfolio-0.0.3.tgz
-   # (or build it from the chart folder: olares-cli chart package ./wealthfolio -o .)
+   # building from source instead:
+   git clone https://github.com/abidals/Wealthfolio-Olares && cd Wealthfolio-Olares
+   olares-cli chart package ./wealthfolio -o .
    ```
 
 3. **Install**, passing your hash from step 1:
@@ -62,6 +63,13 @@ olares-cli chart lint ./wealthfolio
 olares-cli chart package ./wealthfolio -o .
 olares-cli market upload ./wealthfolio-<new-version>.tgz
 olares-cli market upgrade wealthfolio -s upload --version <new-version> --watch
+```
+
+Then publish the new package as a GitHub release so others get it too:
+
+```sh
+git add -A && git commit -m "bump to <upstream version>" && git push
+gh release create v<new-version> ./wealthfolio-<new-version>.tgz --latest
 ```
 
 Your password and data survive upgrades (the env values and the app-data volume persist).
