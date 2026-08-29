@@ -1,0 +1,84 @@
+olaresManifest.version: '0.12.0'
+olaresManifest.type: app
+apiVersion: v3
+metadata:
+  name: wealthfolio
+  appid: wealthfolio
+  title: Wealthfolio
+  description: A beautiful, private, local-first personal finance tracker — investments, net worth, spending, and simulations
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wealthfolio.svg
+  categories:
+  - Lifestyle
+  version: 0.0.3
+entrances:
+- name: wealthfolio
+  host: wealthfolio
+  port: 8088
+  title: Wealthfolio
+  icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wealthfolio.svg
+  authLevel: public
+  invisible: false
+  openMethod: default
+envs:
+- envName: WF_AUTH_PASSWORD_HASH
+  required: true
+  type: password
+  editable: true
+  applyOnChange: true
+  description: >-
+    Argon2id (PHC) hash of your Wealthfolio login password — not the password itself.
+    To change your password, generate a new hash and paste it here, then save (the app restarts):
+    printf 'your-password' | argon2 yoursalt16chars! -id -e
+- envName: WF_MCP_ENABLED
+  required: false
+  type: bool
+  default: "false"
+  editable: true
+  applyOnChange: true
+  description: >-
+    AI Agent Access — let AI agents access your portfolio over MCP at /mcp (default off).
+    When enabled, create scoped, revocable tokens inside the app under Settings → AI Agent Access.
+spec:
+  versionName: "3.7.0"
+  developer: Wealthfolio
+  submitter: nqa.app
+  website: https://wealthfolio.app/
+  sourceCode: https://github.com/wealthfolio/wealthfolio
+  doc: https://wealthfolio.app/docs/introduction/
+  runAsUser: true
+  supportArch:
+  - amd64
+  - arm64
+  accelerator:
+  - mode: cpu
+    requiredCpu: 200m
+    limitedCpu: 300m
+    requiredMemory: 228Mi
+    limitedMemory: 612Mi
+    requiredDisk: 50Mi
+    limitedDisk: 5Gi
+  hardware:
+    cpu: {}
+    gpu: {}
+  runAsInternal: false
+  supportClient: {}
+permission:
+  appData: true
+options:
+  appScope: {}
+  dependencies:
+  - mandatory: false
+    name: olares
+    selfRely: false
+    type: system
+    version: '>=1.12.6-0'
+  oidc: {}
+  resetCookie: {}
+  shared: false
+  upload: {}
+  websocket: {}
+overlayGateway:
+  enable: false
+tailscale: {}
+workloadReplicas:
+  wealthfolio: 1

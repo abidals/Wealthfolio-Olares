@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: wealthfolio
+  name: wealthfolio
+  namespace: '{{ .Release.Namespace }}'
+spec:
+  replicas: {{ .Values.workloads.wealthfolio.replicaCount }}
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: wealthfolio
+  template:
+    metadata:
+      labels:
+        io.kompose.service: wealthfolio
+    spec:
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      initContainers:
+      - name: init-permissions
+        image: beclab/aboveos-busybox:1.37.0
+        command:
+        - sh
+        - -c
+        - |
+          mkdir -p /data && chown 1000:1000 /data
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: wealthfolio-data
+          mountPath: /data
+      containers:
+      - name: wealthfolio
+        image: wealthfolio/wealthfolio:3.7.0
+        ports:
+        - containerPort: 8088
+          protocol: TCP
+        env:
+        - name: WF_LISTEN_ADDR
+          value: 0.0.0.0:8088
+        - name: WF_DB_PATH
+          value: /data/wealthfolio.db
+        - name: WF_CORS_ALLOW_ORIGINS
+          value: "https://{{ .Values.domain.wealthfolio }}"
+        - name: WF_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: wealthfolio-app
+              key: WF_SECRET_KEY
+        - name: WF_AUTH_PASSWORD_HASH
+          valueFrom:
+            secretKeyRef:
+              name: wealthfolio-app
+              key: WF_AUTH_PASSWORD_HASH
+        - name: WF_MCP_ENABLED
+          value: "{{ .Values.olaresEnv.WF_MCP_ENABLED }}"
+        resources:
+          requests:
+            cpu: 200m
+            memory: 228Mi
+          limits:
+            cpu: 300m
+            memory: 612Mi
+        volumeMounts:
+        - name: wealthfolio-data
+          mountPath: /data
+      restartPolicy: Always
+      volumes:
+      - name: wealthfolio-data
+        hostPath:
+          path: {{ .Values.userspace.appData }}
+          type: DirectoryOrCreate

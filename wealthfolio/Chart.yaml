@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: "3.7.0"
+description: Wealthfolio — a beautiful, private, local-first personal finance tracker
+name: wealthfolio
+type: application
+version: 0.0.3

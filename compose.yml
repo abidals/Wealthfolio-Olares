@@ -1,0 +1,13 @@
+services:
+  wealthfolio:
+    image: wealthfolio/wealthfolio:3.7.0
+    labels:
+      olares.service.type: Entrance
+    ports:
+      - "8088:8088"
+    volumes:
+      - wealthfolio-data:/data
+
+volumes:
+  wealthfolio-data:
+    driver: local
