@@ -9,7 +9,7 @@ metadata:
   icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wealthfolio.svg
   categories:
   - Lifestyle
-  version: 0.0.3
+  version: 0.0.4
 entrances:
 - name: wealthfolio
   host: wealthfolio
@@ -39,7 +39,7 @@ envs:
     AI Agent Access — let AI agents access your portfolio over MCP at /mcp (default off).
     When enabled, create scoped, revocable tokens inside the app under Settings → AI Agent Access.
 spec:
-  versionName: "3.7.0"
+  versionName: "3.8.0"
   developer: Wealthfolio
   submitter: nqa.app
   website: https://wealthfolio.app/
