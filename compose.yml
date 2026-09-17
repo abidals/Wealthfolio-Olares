@@ -1,6 +1,6 @@
 services:
   wealthfolio:
-    image: wealthfolio/wealthfolio:3.7.0
+    image: wealthfolio/wealthfolio:3.8.0
     labels:
       olares.service.type: Entrance
     ports:

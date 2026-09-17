@@ -2,7 +2,7 @@
 
 Unofficial [Olares](https://olares.com) app package for [Wealthfolio](https://wealthfolio.app), a beautiful, private, local-first personal finance tracker (investments, net worth, spending, simulations).
 
-Upstream app: [`wealthfolio/wealthfolio`](https://github.com/wealthfolio/wealthfolio) (AGPL-3.0) — image `wealthfolio/wealthfolio` (multi-arch: amd64/arm64), version **3.7.0**.
+Upstream app: [`wealthfolio/wealthfolio`](https://github.com/wealthfolio/wealthfolio) (AGPL-3.0) — image `wealthfolio/wealthfolio` (multi-arch: amd64/arm64), version **3.8.0**.
 
 ## What you get
 
@@ -31,7 +31,7 @@ Upstream app: [`wealthfolio/wealthfolio`](https://github.com/wealthfolio/wealthf
 
 2. **Get the chart package** — download `wealthfolio-<version>.tgz` from this repo's [Releases](https://github.com/abidals/Wealthfolio-Olares/releases/latest) (or clone and build it yourself), then upload it to your Olares Local Sources:
    ```sh
-   olares-cli market upload ./wealthfolio-0.0.3.tgz
+   olares-cli market upload ./wealthfolio-0.0.6.tgz
    # building from source instead:
    git clone https://github.com/abidals/Wealthfolio-Olares && cd Wealthfolio-Olares
    olares-cli chart package ./wealthfolio -o .
@@ -39,7 +39,7 @@ Upstream app: [`wealthfolio/wealthfolio`](https://github.com/wealthfolio/wealthf
 
 3. **Install**, passing your hash from step 1:
    ```sh
-   olares-cli market install wealthfolio -s upload --version 0.0.3 \
+   olares-cli market install wealthfolio -s upload --version 0.0.6 \
      --env WF_AUTH_PASSWORD_HASH='<paste-your-hash>' --watch
    ```
 
@@ -79,8 +79,9 @@ Your password and data survive upgrades (the env values and the app-data volume 
 ```
 wealthfolio/            # the Olares Helm-style chart (OlaresManifest.yaml + templates/)
 compose.yml             # upstream docker-compose reference this chart was ported from
-wealthfolio-0.0.3.tgz   # pre-built chart package (what `market upload` consumes)
 ```
+
+Chart packages (`wealthfolio-<version>.tgz`) are not committed to the repo — grab the latest from the [Releases](https://github.com/abidals/Wealthfolio-Olares/releases/latest) page or build with `olares-cli chart package`.
 
 ## Notes
 

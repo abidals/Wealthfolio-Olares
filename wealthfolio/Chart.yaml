@@ -3,4 +3,4 @@ appVersion: "3.8.0"
 description: Wealthfolio — a beautiful, private, local-first personal finance tracker
 name: wealthfolio
 type: application
-version: 0.0.4
+version: 0.0.6

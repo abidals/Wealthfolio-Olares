@@ -9,7 +9,7 @@ metadata:
   icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wealthfolio.svg
   categories:
   - Lifestyle
-  version: 0.0.4
+  version: 0.0.6
 entrances:
 - name: wealthfolio
   host: wealthfolio
@@ -41,7 +41,7 @@ envs:
 spec:
   versionName: "3.8.0"
   developer: Wealthfolio
-  submitter: nqa.app
+  submitter: abidals
   website: https://wealthfolio.app/
   sourceCode: https://github.com/wealthfolio/wealthfolio
   doc: https://wealthfolio.app/docs/introduction/
@@ -65,6 +65,7 @@ spec:
 permission:
   appData: true
 options:
+  apiTimeout: 0
   appScope: {}
   dependencies:
   - mandatory: false
