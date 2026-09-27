@@ -36,7 +36,7 @@ spec:
           mountPath: /data
       containers:
       - name: wealthfolio
-        image: wealthfolio/wealthfolio:3.8.0
+        image: wealthfolio/wealthfolio:3.9.1
         ports:
         - containerPort: 8088
           protocol: TCP
@@ -65,7 +65,7 @@ spec:
             memory: 228Mi
           limits:
             cpu: 300m
-            memory: 612Mi
+            memory: 1Gi
         volumeMounts:
         - name: wealthfolio-data
           mountPath: /data

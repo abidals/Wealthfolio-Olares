@@ -9,7 +9,7 @@ metadata:
   icon: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/wealthfolio.svg
   categories:
   - Lifestyle
-  version: 0.0.6
+  version: 0.0.7
 entrances:
 - name: wealthfolio
   host: wealthfolio
@@ -39,7 +39,7 @@ envs:
     AI Agent Access — let AI agents access your portfolio over MCP at /mcp (default off).
     When enabled, create scoped, revocable tokens inside the app under Settings → AI Agent Access.
 spec:
-  versionName: "3.8.0"
+  versionName: "3.9.1"
   developer: Wealthfolio
   submitter: abidals
   website: https://wealthfolio.app/
@@ -54,7 +54,7 @@ spec:
     requiredCpu: 200m
     limitedCpu: 300m
     requiredMemory: 228Mi
-    limitedMemory: 612Mi
+    limitedMemory: 1Gi
     requiredDisk: 50Mi
     limitedDisk: 5Gi
   hardware:
